@@ -1,6 +1,6 @@
 <div class="container col-lg-6 col-centered" ng-controller="BrowseController" id="grumpSearchContainer" ng-init="getGrumps()">
-  <select id="categorySelector" ng-repeat="grump in grumps  | orderBy:'command'" ng-change="filterGrumps()" ng-model="category">
-    <option value="{{grump.category}}">{{grump.category}}</option>
+  <select id="categorySelector" ng-change="filterGrumps()" ng-model="category">
+    <option value="{{grump.category}}" ng-repeat="grump in grumps  | orderBy:'command'">{{grump.category}}</option>
   </select>
 
   <form class='form-horizontal' role='form' name="searchForm">
