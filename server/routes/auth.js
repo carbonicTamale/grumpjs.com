@@ -6,6 +6,7 @@ var User       = require('../models/User');
 var http       = require('http');
 var request    = require('request');
 var utils      = require('../helpers/route-utils');
+var bcrypt    = require('bcrypt');
 
 // recieves the code from github and then gets the token for the user
 router.get('/signin', function(req, res, next) {
@@ -73,14 +74,21 @@ router.post('/checkAuth', function (req, res, next) {
 router.post('/login', function(req, res, next) {
   var user = req.body;
 
-  User.find(user, function (err, result) {
+  // hash the password
+  var salt = bcrypt.genSaltSync(10);
+  var hash = bcrypt.hashSync(user.password, salt);
 
+  User.find(user.name, function (err, result) {
     if(err) {
       res.send(false);
     } else if(result.length === 0) {
       res.send(false);
     } else if(result.length === 1) {
-      res.send(result[0].id);
+      if(bcrypt.compareSync(result.password, hash)) {
+        res.send(result[0].id);
+      } else {
+        res.send(false);
+      }
     }
   });
 });
