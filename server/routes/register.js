@@ -4,10 +4,16 @@ var router    = express.Router();
 var User      = require('../models/User');
 var request   = require('request');
 var utils     = require('../helpers/route-utils');
+var bcrypt    = require('bcrypt');
 
 //get the library of grumps that belong to you
 router.post('/', function(req, res, next) {
   var newUser = req.body;
+
+  // hash the password
+  var salt = bcrypt.genSaltSync(10);
+  var hash = bcrypt.hashSync(user.password, salt);
+  user.password = hash;
 
   // post to mongo
   var user = new User(newUser);

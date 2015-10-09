@@ -97,7 +97,7 @@ router.delete('/', function(req, res, next) {
       Package.findOne({_id: grumpID, 'author' : user.login }, function (err, pack) {
         if (err) { throw err; }
         else if (pack === undefined) {
-          res.send("you dont have access to update this package stop trolling");
+          res.send("you dont have access to delete this package stop trolling");
         } else {
           //then junking it
           Package.findOne({_id: grumpID}).remove(function(err, pack) {
