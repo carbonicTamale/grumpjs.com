@@ -17,6 +17,7 @@
     "angular": "*",
     "angular-route": "*",
     "angular-mocks": "*",
+    "angular-cookies": "*",
     "bootstrap": "~3.3.5",
     "jquery": "~2.1.4",
     "angular-markdown-directive": "~0.3.1"
