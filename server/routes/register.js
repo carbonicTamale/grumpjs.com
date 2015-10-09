@@ -12,8 +12,8 @@ router.post('/', function(req, res, next) {
 
   // hash the password
   var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(user.password, salt);
-  user.password = hash;
+  var hash = bcrypt.hashSync(newUser.password, salt);
+  newUser.password = hash;
 
   // post to mongo
   var user = new User(newUser);

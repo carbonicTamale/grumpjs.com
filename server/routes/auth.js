@@ -74,17 +74,17 @@ router.post('/checkAuth', function (req, res, next) {
 router.post('/login', function(req, res, next) {
   var user = req.body;
 
-  // hash the password
-  var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(user.password, salt);
-
-  User.find(user.name, function (err, result) {
+  User.find({name: user.name}, function (err, result) {
     if(err) {
       res.send(false);
     } else if(result.length === 0) {
       res.send(false);
     } else if(result.length === 1) {
-      if(bcrypt.compareSync(result.password, hash)) {
+      // hash the password
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(user.password, salt);
+
+      if(bcrypt.compareSync(user.password, result[0].password)) {
         res.send(result[0].id);
       } else {
         res.send(false);
