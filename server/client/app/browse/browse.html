@@ -1,26 +1,28 @@
-<div class="container col-lg-6 col-centered" ng-controller="BrowseController" id="grumpSearchContainer" ng-init="getGrumps()">
-  <select id="categorySelector" ng-change="filterGrumps()" ng-model="category">
-    <option value="{{grump.category}}" ng-repeat="grump in grumps  | orderBy:'command'">{{grump.category}}</option>
-  </select>
-
-  <form class='form-horizontal' role='form' name="searchForm">
-    <label class="control-label " for="grumpSearchBox">
-      Search Grumps
-    </label>
-    <input type='text' input='text' class='form-control grumpSearch' id="grumpSearchBox" placeholder="Search..." ng-model='searchText'>
-  </form>
-</div>
-
 <div ng-controller="BrowseController" ng-init="getGrumps()">
-  <div class="container col-centered">
-    <div class="row">
-      <div class="col-lg-12 col-centered grump" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText">
-        <div class="panel panel-default text-left">
-            <span class="grumpDetail name"><b>Grump Name</b>: <span class="grumpName">{{grump.defaultCommand}}</span></span>
-            <span class="grumpDetail owner"><b>Author</b>: <span class="grumpOwner"> {{grump.author}}</span></span>
-            <span class="grumpDetail category"><b>Category</b>: <span> {{grump.category}}</span></span>
-            <span class="grumpDetail description"><b>Description</b>: {{grump.description}}</span>
-          <span class="grumpDetail repo"><b>Repo</b>: <a ng-href="{{grump.cloneUrl}}" class="grumpRepo">{{grump.repoName}}</a></span>
+  <div class="container col-lg-6 col-centered" id="grumpSearchContainer">
+    <select id="categorySelector" ng-change="filterGrumps()" ng-model="category">
+      <option value="{{category}}" ng-repeat="category in categories  | orderBy:'command'">{{category}}</option>
+    </select>
+
+    <form class='form-horizontal' role='form' name="searchForm">
+      <label class="control-label " for="grumpSearchBox">
+        Search Grumps
+      </label>
+      <input type='text' input='text' class='form-control grumpSearch' id="grumpSearchBox" placeholder="Search..." ng-model='searchText'>
+    </form>
+  </div>
+
+  <div>
+    <div class="container col-centered">
+      <div class="row">
+        <div class="col-lg-12 col-centered grump" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText">
+          <div class="panel panel-default text-left">
+              <span class="grumpDetail name"><b>Grump Name</b>: <span class="grumpName">{{grump.defaultCommand}}</span></span>
+              <span class="grumpDetail owner"><b>Author</b>: <span class="grumpOwner"> {{grump.author}}</span></span>
+              <span class="grumpDetail category"><b>Category</b>: <span> {{grump.category}}</span></span>
+              <span class="grumpDetail description"><b>Description</b>: {{grump.description}}</span>
+            <span class="grumpDetail repo"><b>Repo</b>: <a ng-href="{{grump.cloneUrl}}" class="grumpRepo">{{grump.repoName}}</a></span>
+          </div>
         </div>
       </div>
     </div>
