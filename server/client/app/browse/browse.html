@@ -11,10 +11,10 @@
   </form>
 </div>
 
-<div ng-controller="BrowseController">
+<div ng-controller="BrowseController" ng-init="getGrumps()">
   <div class="container col-centered">
     <div class="row">
-      <div class="col-lg-12 col-centered grump" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText | filter:category">
+      <div class="col-lg-12 col-centered grump" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText">
         <div class="panel panel-default text-left">
             <span class="grumpDetail name"><b>Grump Name</b>: <span class="grumpName">{{grump.defaultCommand}}</span></span>
             <span class="grumpDetail owner"><b>Author</b>: <span class="grumpOwner"> {{grump.author}}</span></span>

@@ -10,6 +10,7 @@ angular.module('grump.upload', ['ngCookies'])
   $scope.submitForm = function(obj) {
     if($cookies.get('id')) {
       obj.userId = $cookies.get('id');
+      obj.internal = true;
     }
 
     Files.submitGrump(obj)
